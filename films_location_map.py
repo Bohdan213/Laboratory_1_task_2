@@ -64,14 +64,14 @@ def parse_args():
     parser.add_argument('path', help='path to dataset')
     return parser.parse_args()
 
-
 def length(lat_1, lon_1, lat_2, lon_2):
     """
     function for counting length between 2 places
     """
-    answer = (2 * 6371 * math.asin(math.sqrt(
-        math.sin((lat_2 - lat_1) / 2) ** 2 + math.cos(lat_1) * math.cos(lat_2) * (math.sin((lon_1 - lon_2) / 2) ** 2))))
-    return answer
+    lat = (lat_2 - lat_1) * (math.pi / 180)
+    lon = (lon_2 - lon_1) * (math.pi / 180)
+    answer = math.sin(lat / 2) ** 2 + math.cos(lat_1 * math.pi / 180) * math.cos(lat_2 * math.pi / 180) * (math.sin(lon / 2) ** 2)
+    return 2 * 6371 * math.atan2(math.sqrt(answer), math.sqrt(1 - answer))
 
 
 def geocode(adress):
