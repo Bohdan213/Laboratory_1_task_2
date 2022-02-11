@@ -67,6 +67,8 @@ def parse_args():
 def length(lat_1, lon_1, lat_2, lon_2):
     """
     function for counting length between 2 places
+    >>> length(45.234324, 123.668768, 32.4123058, 1.21312456)
+    9615.324390431118
     """
     lat = (lat_2 - lat_1) * (math.pi / 180)
     lon = (lon_2 - lon_1) * (math.pi / 180)
@@ -75,6 +77,10 @@ def length(lat_1, lon_1, lat_2, lon_2):
 
 
 def geocode(adress):
+    """
+    >>> geocode('Kiyv, Ukraine')
+    (50.45056000000005, 30.524280000000033)
+    """
     try:
         i = 0
         while i < len(geocoders):
